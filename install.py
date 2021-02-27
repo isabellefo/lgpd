@@ -1,9 +1,15 @@
 import os
 from sys import platform
 
-os.system("virtualenv env")
+try:
+    if platform == "linux":
+        os.system("source ./env/Scrips/activate")
+    elif "win" in platform:]
+        os.system("./env/Scrips/activate.bat")
+except:
+    os.system("pip install virtualenv")
+    os.system("virtualenv env")
 
-if platform == "linux":
-    os.system("python3 -m pip install -r requirements.txt")
-elif "win" in platform:
-    os.system("python -m pip install -r requirements.txt")
+
+os.system("pip insall -e .")
+os.system("pip install -r requirements.txt")

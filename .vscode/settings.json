@@ -3,10 +3,13 @@
     "editor.fontLigatures": true,
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
-        "source.organizeImports": true,
+        "source.organizeImports": true
     },
     "python.pythonPath": "env/bin/python3.8",
     "python.linting.lintOnSave": true,
     "python.linting.pylintEnabled": true,
+    "python.linting.pylintArgs": [
+        "--enable=W0614"
+    ],
     "python.formatting.provider": "autopep8"
 }
