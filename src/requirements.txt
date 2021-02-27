@@ -1,0 +1,12 @@
+autopep8==1.5.5
+click==7.1.2
+Flask==1.1.2
+itsdangerous==1.1.0
+Jinja2==2.11.3
+MarkupSafe==1.1.1
+pep8==1.7.1
+pycodestyle==2.6.0
+SQLAlchemy==1.3.23
+-e git+git@github.com:isabellefo/seg-informacao.git@1f76a82eb6836a0370415e70d30522490b2efc29#egg=src&subdirectory=src
+toml==0.10.2
+Werkzeug==1.0.1
