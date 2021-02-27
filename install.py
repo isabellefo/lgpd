@@ -6,4 +6,4 @@ os.system("virtualenv env")
 if platform == "linux":
     os.system("python3 -m pip install -r requirements.txt")
 elif "win" in platform:
-    os.system("python3 -m pip install -r requirements.txt")
+    os.system("python -m pip install -r requirements.txt")
