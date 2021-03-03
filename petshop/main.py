@@ -1,5 +1,7 @@
-from petshop.cliente import Cliente
-from petshop.produto import Produto
-from petshop.unidade import Unidade
+from petshop import create_app
 
-print("ok")
+if __name__ == "__main__":
+    app = create_app()
+    app.run()
+else:
+    print(__name__)
