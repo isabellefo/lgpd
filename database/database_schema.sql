@@ -24,7 +24,7 @@ CREATE TABLE clientes
      raca            VARCHAR(100)
   );  
 
-CREATE TABLE cliente_pet
+CREATE TABLE clientes_pets
   (
      id_cliente_pet INTEGER,
      id_pet         INTEGER,
