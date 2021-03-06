@@ -13,6 +13,26 @@ CREATE TABLE clientes
      nome_pai        VARCHAR(100),
      PRIMARY KEY (cpf)
   );
+  
+  CREATE TABLE pets
+  (
+     id_pet          INTEGER PRIMARY KEY AUTO_INCREMENT,
+     nome            VARCHAR(100),
+     data_nascimento DATE,
+     sexo            BOOL,
+     especie         VARCHAR(100),
+     raca            VARCHAR(100)
+  );  
+
+CREATE TABLE cliente_pet
+  (
+     id_cliente_pet INTEGER,
+     id_pet         INTEGER,
+     cpf            VARCHAR(11),
+     PRIMARY KEY (id_cliente_pet),
+     FOREIGN KEY (id_pet) REFERENCES pets(id_pet),
+     FOREIGN KEY (cpf) REFERENCES clientes(cpf)
+  );
 
 CREATE TABLE unidades
   (
