@@ -13,12 +13,12 @@ CREATE TABLE clientes
      nome_pai        VARCHAR(100),
      PRIMARY KEY (cpf)
   );
-  
-   CREATE TABLE pets
+
+CREATE TABLE pets
   (
      id_pet          INTEGER PRIMARY KEY AUTOINCREMENT,
      nome            VARCHAR(100),
-     data_nascimento DATE,
+     data_nascimento TEXT,
      sexo            BOOL,
      especie         VARCHAR(100),
      raca            VARCHAR(100)
@@ -81,10 +81,10 @@ CREATE TABLE transacoes
      FOREIGN KEY (cpf) REFERENCES clientes(cpf)
   );  
 
-  CREATE TABLE produtos_transacoes
+CREATE TABLE produtos_transacoes
   (
      id_produto INTEGER,
      id_transacao INTEGER,
      valor DECIMAL(6,2) NOT NULL,
      PRIMARY KEY(id_produto, id_transacao)
-  )
+  );
