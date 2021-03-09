@@ -1,19 +1,38 @@
+CREATE TABLE clientes_status
+(
+   id_status INTEGER PRIMARY KEY AUTO_INCREMENT,
+   descricao VARCHAR(200),
+   data_cadastro DATE
+);
+
 CREATE TABLE clientes
   (
-     cpf             VARCHAR(11) NOT NULL,
-     nome            VARCHAR(100),
-     rg              VARCHAR(9),
-     sexo            BOOL,
-     telefone        VARCHAR(10),
-     celular         VARCHAR(11),
-     endereco        VARCHAR(500),
-     data_nascimento DATE,
-     renda           DECIMAL(6, 2),
-     nome_mae        VARCHAR(100),
-     nome_pai        VARCHAR(100),
-     PRIMARY KEY (cpf)
+     id_cliente       INTEGER PRIMARY KEY AUTO_INCREMENT,
+     id_status        INTEGER,
+     cpf              VARCHAR(11),
+     nome             VARCHAR(100),
+     rg               VARCHAR(9),
+     sexo             BOOL,
+     telefone         VARCHAR(10),
+     celular          VARCHAR(11),
+     endereco         VARCHAR(500),
+     data_nascimento  DATE,
+     data_cadastro    DATE,
+     data_modificacao DATE,
+     renda            DECIMAL(6, 2),
+     FOREIGN KEY (id_status) REFERENCES clientes_status(id_status)
   );
-  
+
+  CREATE TABLE clientes_responsaveis
+  (
+     id_cliente_responsavel INTEGER PRIMARY KEY AUTO_INCREMENT,
+     id_dependente INTEGER,
+     id_responsavel INTEGER,
+     data_cadastro DATE,
+     FOREIGN KEY (id_dependente) REFERENCES clientes(id_cliente),
+     FOREIGN KEY (id_responsavel) REFERENCES clientes(id_cliente)
+  );
+
   CREATE TABLE pets
   (
      id_pet          INTEGER PRIMARY KEY AUTO_INCREMENT,
@@ -22,16 +41,16 @@ CREATE TABLE clientes
      sexo            BOOL,
      especie         VARCHAR(100),
      raca            VARCHAR(100)
-  );  
+  );
 
 CREATE TABLE clientes_pets
   (
      id_cliente_pet INTEGER,
      id_pet         INTEGER,
-     cpf            VARCHAR(11),
+     id_cliente     INTEGER,
      PRIMARY KEY (id_cliente_pet),
      FOREIGN KEY (id_pet) REFERENCES pets(id_pet),
-     FOREIGN KEY (cpf) REFERENCES clientes(cpf)
+     FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente)
   );
 
 CREATE TABLE unidades
@@ -70,7 +89,7 @@ CREATE TABLE transacoes
      id_transacao    INTEGER NOT NULL,
      id_produto      INTEGER,
      id_unidade      INTEGER,
-     cpf             VARCHAR(11),
+     id_cliente      INTEGER,
      quantidade      INTEGER,
      valor_unitario  INTEGER,
      valor_transacao DECIMAL(6, 2),
@@ -78,7 +97,7 @@ CREATE TABLE transacoes
      PRIMARY KEY (id_transacao),
      FOREIGN KEY (id_produto) REFERENCES produtos(id_produto),
      FOREIGN KEY (id_unidade) REFERENCES unidades(id_unidade),
-     FOREIGN KEY (cpf) REFERENCES clientes(cpf)
+     FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente)
   );  
 
   CREATE TABLE produtos_transacoes
@@ -87,4 +106,4 @@ CREATE TABLE transacoes
      id_transacao INTEGER,
      valor DECIMAL(6,2) NOT NULL,
      PRIMARY KEY(id_produto, id_transacao)
-  )
+  );
