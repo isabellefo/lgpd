@@ -25,12 +25,10 @@ CREATE TABLE clientes
 
   CREATE TABLE clientes_responsaveis
   (
-     id_cliente_responsavel INTEGER PRIMARY KEY AUTO_INCREMENT,
      id_dependente INTEGER,
      id_responsavel INTEGER,
      data_cadastro DATE,
-     FOREIGN KEY (id_dependente) REFERENCES clientes(id_cliente),
-     FOREIGN KEY (id_responsavel) REFERENCES clientes(id_cliente)
+     PRIMARY KEY(id_dependente, id_responsavel)
   );
 
   CREATE TABLE pets
@@ -45,12 +43,11 @@ CREATE TABLE clientes
 
 CREATE TABLE clientes_pets
   (
-     id_cliente_pet INTEGER,
      id_pet         INTEGER,
      id_cliente     INTEGER,
-     PRIMARY KEY (id_cliente_pet),
      FOREIGN KEY (id_pet) REFERENCES pets(id_pet),
-     FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente)
+     FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente),
+     PRIMARY KEY (id_pet, id_cliente)
   );
 
 CREATE TABLE unidades
@@ -95,8 +92,6 @@ CREATE TABLE transacoes
      valor_transacao DECIMAL(6, 2),
      data_transacao  DATETIME,
      PRIMARY KEY (id_transacao),
-     FOREIGN KEY (id_produto) REFERENCES produtos(id_produto),
-     FOREIGN KEY (id_unidade) REFERENCES unidades(id_unidade),
      FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente)
   );  
 
