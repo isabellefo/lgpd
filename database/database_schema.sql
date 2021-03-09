@@ -52,6 +52,17 @@ CREATE TABLE clientes_pets
      PRIMARY KEY (id_pet, id_cliente)
   );
 
+  CREATE TABLE endereco
+(
+	 id_endereco     INTEGER PRIMARY KEY AUTO_INCREMENT,              
+	 bairro			  VARCHAR(30),
+    numero          VARCHAR(20),
+	 estado          VARCHAR(10),
+    CEP             VARCHAR(20),
+    cidade          VARCHAR(20),
+    FOREIGN KEY (cpf) REFERENCES clientes(cpf)
+);
+
 CREATE TABLE unidades
   (
      id_unidade    INTEGER PRIMARY KEY AUTO_INCREMENT,
