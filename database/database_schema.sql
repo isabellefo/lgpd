@@ -6,22 +6,24 @@ CREATE TABLE clientes_status
    );
 
 CREATE TABLE clientes
-  (
-     id_cliente       INTEGER PRIMARY KEY AUTO_INCREMENT,
-     id_status        INTEGER,
-     cpf              VARCHAR(11),
-     nome             VARCHAR(100),
-     rg               VARCHAR(9),
-     sexo             BOOL,
-     telefone         VARCHAR(10),
-     celular          VARCHAR(11),
-     endereco         VARCHAR(500),
-     data_nascimento  DATE,
-     data_cadastro    DATE,
-     data_modificacao DATE,
-     renda            DECIMAL(6, 2),
-     FOREIGN KEY (id_status) REFERENCES clientes_status(id_status)
-  );
+   (
+      id_cliente       INTEGER PRIMARY KEY AUTO_INCREMENT,
+      id_status        INTEGER,
+      id_endereco      INTEGER,
+      cpf              VARCHAR(11),
+      nome             VARCHAR(100),
+      rg               VARCHAR(9),
+      sexo             BOOL,
+      telefone         VARCHAR(10),
+      celular          VARCHAR(11),
+      endereco         VARCHAR(500),
+      data_nascimento  DATE,
+      data_cadastro    DATE,
+      data_modificacao DATE,
+      renda            DECIMAL(6, 2),
+      FOREIGN KEY (id_status) REFERENCES clientes_status(id_status),
+      FOREIGN KEY (id_endereco) REFERENCES endereco(id_endereco)
+   );
 
 CREATE TABLE clientes_responsaveis
   (
@@ -52,16 +54,15 @@ CREATE TABLE clientes_pets
      PRIMARY KEY (id_pet, id_cliente)
   );
 
-  CREATE TABLE endereco
-(
-	 id_endereco     INTEGER PRIMARY KEY AUTO_INCREMENT,              
-	 bairro			  VARCHAR(30),
-    numero          VARCHAR(20),
-	 estado          VARCHAR(10),
-    CEP             VARCHAR(20),
-    cidade          VARCHAR(20),
-    FOREIGN KEY (cpf) REFERENCES clientes(cpf)
-);
+CREATE TABLE endereco
+   (
+      id_endereco     INTEGER PRIMARY KEY AUTO_INCREMENT, 
+      bairro			 VARCHAR(30),
+      numero          VARCHAR(20),
+      estado          VARCHAR(10),
+      CEP             VARCHAR(20),
+      cidade          VARCHAR(20)
+   );
 
 CREATE TABLE unidades
   (
