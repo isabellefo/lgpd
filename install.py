@@ -4,7 +4,7 @@ from sys import platform
 try:
     if platform == "linux":
         os.system("source ./env/Scripts/activate")
-    elif "win" in platform:]
+    elif "win" in platform:
         os.system("./env/Scrips/activate.bat")
 except:
     os.system("pip install virtualenv")
