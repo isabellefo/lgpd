@@ -1,9 +1,9 @@
 CREATE TABLE clientes_status
-(
-   id_status INTEGER PRIMARY KEY AUTO_INCREMENT,
-   descricao VARCHAR(200),
-   data_cadastro DATE
-);
+   (
+      id_status INTEGER PRIMARY KEY AUTO_INCREMENT,
+      descricao VARCHAR(200),
+      data_cadastro DATE
+   );
 
 CREATE TABLE clientes
   (
@@ -23,15 +23,17 @@ CREATE TABLE clientes
      FOREIGN KEY (id_status) REFERENCES clientes_status(id_status)
   );
 
-  CREATE TABLE clientes_responsaveis
+CREATE TABLE clientes_responsaveis
   (
      id_dependente INTEGER,
      id_responsavel INTEGER,
      data_cadastro DATE,
-     PRIMARY KEY(id_dependente, id_responsavel)
+     PRIMARY KEY(id_dependente, id_responsavel),
+     FOREIGN KEY (id_dependente) REFERENCES clientes(id_cliente),
+     FOREIGN KEY (id_responsavel) REFERENCES clientes(id_cliente)
   );
 
-  CREATE TABLE pets
+CREATE TABLE pets
   (
      id_pet          INTEGER PRIMARY KEY AUTO_INCREMENT,
      nome            VARCHAR(100),
@@ -83,19 +85,18 @@ CREATE TABLE produtos_unidades
 
 CREATE TABLE transacoes
   (
-     id_transacao    INTEGER NOT NULL,
-     id_produto      INTEGER,
+     id_transacao    INTEGER PRIMARY KEY AUTO_INCREMENT,
      id_unidade      INTEGER,
      id_cliente      INTEGER,
      quantidade      INTEGER,
      valor_unitario  INTEGER,
      valor_transacao DECIMAL(6, 2),
      data_transacao  DATETIME,
-     PRIMARY KEY (id_transacao),
-     FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente)
+     FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente),
+     FOREIGN KEY (id_unidade) REFERENCES unidades(id_unidade)
   );  
 
-  CREATE TABLE produtos_transacoes
+CREATE TABLE produtos_transacoes
   (
      id_produto INTEGER,
      id_transacao INTEGER,
