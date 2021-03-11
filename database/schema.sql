@@ -5,18 +5,27 @@ CREATE TABLE clientes_status
       data_cadastro DATE
    );
 
+CREATE TABLE endereco
+   (
+      id_endereco     INTEGER PRIMARY KEY AUTO_INCREMENT, 
+      bairro			 VARCHAR(30),
+      numero          VARCHAR(20),
+      estado          VARCHAR(10),
+      CEP             VARCHAR(20),
+      cidade          VARCHAR(20)
+   );
+
 CREATE TABLE clientes
    (
       id_cliente       INTEGER PRIMARY KEY AUTO_INCREMENT,
       id_status        INTEGER,
       id_endereco      INTEGER,
-      cpf              VARCHAR(11),
+      cpf              VARCHAR(11) UNIQUE NOT NULL,
       nome             VARCHAR(100),
       rg               VARCHAR(9),
       sexo             BOOL,
       telefone         VARCHAR(10),
       celular          VARCHAR(11),
-      endereco         VARCHAR(500),
       data_nascimento  DATE,
       data_cadastro    DATE,
       data_modificacao DATE,
@@ -54,16 +63,6 @@ CREATE TABLE clientes_pets
      PRIMARY KEY (id_pet, id_cliente)
   );
 
-CREATE TABLE endereco
-   (
-      id_endereco     INTEGER PRIMARY KEY AUTO_INCREMENT, 
-      bairro			 VARCHAR(30),
-      numero          VARCHAR(20),
-      estado          VARCHAR(10),
-      CEP             VARCHAR(20),
-      cidade          VARCHAR(20)
-   );
-
 CREATE TABLE unidades
   (
      id_unidade    INTEGER PRIMARY KEY AUTO_INCREMENT,
@@ -86,11 +85,10 @@ CREATE TABLE produtos
 
 CREATE TABLE produtos_unidades
   (
-     id_produto_unidade INTEGER,
      id_produto         INTEGER,
      id_unidade         INTEGER,
      quantidade         INTEGER,
-     PRIMARY KEY (id_produto_unidade),
+     PRIMARY KEY (id_produto, id_unidade),
      FOREIGN KEY (id_produto) REFERENCES produtos(id_produto),
      FOREIGN KEY (id_unidade) REFERENCES unidades(id_unidade)
   );
@@ -106,12 +104,14 @@ CREATE TABLE transacoes
      data_transacao  DATETIME,
      FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente),
      FOREIGN KEY (id_unidade) REFERENCES unidades(id_unidade)
-  );  
+  );
 
 CREATE TABLE produtos_transacoes
   (
      id_produto INTEGER,
      id_transacao INTEGER,
      valor DECIMAL(6,2) NOT NULL,
-     PRIMARY KEY(id_produto, id_transacao)
+     PRIMARY KEY(id_produto, id_transacao),
+     FOREIGN KEY (id_produto) REFERENCES produtos(id_produto),
+     FOREIGN KEY (id_transacao) REFERENCES transacoes(id_transacao)
   );
