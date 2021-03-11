@@ -11,7 +11,8 @@ CREATE TABLE clientes
       data_cadastro    DATE,
       data_modificacao DATE,
       renda            DECIMAL(6, 2),
-      bairro		   VARCHAR(30),
+      bairro		     VARCHAR(30),
+      rua              VARCHAR(30),
       numero           VARCHAR(20),
       estado           VARCHAR(10),
       CEP              VARCHAR(20),
@@ -43,11 +44,16 @@ CREATE TABLE unidades
      id_unidade    INTEGER PRIMARY KEY AUTO_INCREMENT,
      razao_social  VARCHAR(100),
      nome_fantasia VARCHAR(100),
-     cnpj          VARCHAR(14),
-     endereco      VARCHAR(500),
-     telefone      VARCHAR(10),
-     celular       VARCHAR(11),
-     email         VARCHAR(100)
+     cnpj          VARCHAR(20),
+     telefone      VARCHAR(20),
+     celular       VARCHAR(20),
+     email         VARCHAR(100),
+     bairro		     VARCHAR(30),
+     rua              VARCHAR(30),
+     numero           VARCHAR(10),
+     estado           VARCHAR(2),
+     CEP              VARCHAR(20),
+     cidade           VARCHAR(50)
   );
 
 CREATE TABLE produtos
