@@ -9,6 +9,7 @@ setup(
         'flask',
         'sqlalchemy',
         'Flask-SQLAlchemy',
-        'mysqlclient'
+        'mysqlclient',
+        'faker'
     ]
 )
