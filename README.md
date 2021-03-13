@@ -9,5 +9,5 @@ Inicialmente a aplicação está despreparada para receber implementar a LGPD, e
 
 # Backlog
  * 1ª Sprint
-  - Anonimização de dados
+  - Anonimização de dados 
   - Relatório de clientes 
