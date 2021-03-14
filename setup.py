@@ -10,6 +10,7 @@ setup(
         'sqlalchemy',
         'Flask-SQLAlchemy',
         'mysqlclient',
-        'faker'
+        'faker',
+        'gunicorn'
     ]
 )
