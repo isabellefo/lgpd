@@ -1,7 +1,6 @@
 from sqlalchemy import Column, Integer, String, Date, Boolean, Numeric, create_engine
 from sqlalchemy.orm import sessionmaker
 from faker import Faker
-from petshop.cliente.model import Cliente
 from sqlalchemy.ext.declarative import declarative_base
 import dateutil.parser
 import random
@@ -61,5 +60,5 @@ for _ in range(100):
 
 try:
     session.commit()
-except e:
-    print(e)
+except:
+    print('deu ruim')
