@@ -1,7 +1,7 @@
 CREATE TABLE clientes
    (
       cpf              VARCHAR(11) PRIMARY KEY,
-      cpf_responsavel  VARCHAR(11) NULL,
+      cpf_responsavel  VARCHAR(11),
       nome             VARCHAR(100),
       rg               VARCHAR(9),
       sexo             BOOL,
@@ -11,12 +11,12 @@ CREATE TABLE clientes
       data_cadastro    DATE,
       data_modificacao DATE,
       renda            DECIMAL(6, 2),
-      bairro		     VARCHAR(100),
-      rua              VARCHAR(100),
+      bairro		     VARCHAR(30),
+      rua              VARCHAR(30),
       numero           VARCHAR(20),
-      estado           VARCHAR(30),
+      estado           VARCHAR(10),
       CEP              VARCHAR(20),
-      cidade           VARCHAR(100),
+      cidade           VARCHAR(20),
       FOREIGN KEY (cpf_responsavel) REFERENCES clientes(cpf)
    );
 
@@ -26,7 +26,7 @@ CREATE TABLE pets
      nome            VARCHAR(100),
      data_nascimento DATE,
      sexo            BOOL,
-     especie         ENUM('AVE', 'CACHORRO', 'GATO', 'REPTIL', 'ROEDOR'),
+     especie         VARCHAR(100),
      raca            VARCHAR(100)
   );
 
