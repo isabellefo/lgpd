@@ -61,7 +61,7 @@ CREATE TABLE produtos
      id_produto INTEGER PRIMARY KEY AUTO_INCREMENT,
      nome       VARCHAR(100),
      valor      DECIMAL(6, 2),
-     tipo       INTEGER
+     tipo       ENUM('AVE', 'CACHORRO', 'GATO', 'REPTIL', 'ROEDOR')
   );
 
 CREATE TABLE produtos_unidades
