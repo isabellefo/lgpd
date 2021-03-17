@@ -17,12 +17,12 @@ class Endereco(Base):
     __tablename__ = "endereco"
 
     id_endereco = Column(Integer, primary_key=True, autoincrement=True)
-    bairro = Column(String(100))
-    rua = Column(String(100))
-    numero = Column(String(20))
-    estado = Column(String(30))
+    bairro = Column(String(30))
+    rua = Column(String(20))
+    numero = Column(String(10))
+    estado = Column(String(20))
     cep = Column('CEP', String(20))
-    cidade = Column(String(100))
+    cidade = Column(String(50))
 
     def __init__(self):
 
