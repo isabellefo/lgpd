@@ -17,6 +17,7 @@ Session = sessionmaker(bind=engine)
 session = Session()
 Base = declarative_base()
 
+
 class Produtos(Base):
     __tablename__ = "produtos"
 
@@ -31,11 +32,13 @@ class Produtos(Base):
         self.tipo = tipo
         self.valor = valor
 
+
 class ProdutoUnidade(Base):
     __tablename__ = "produtos_unidades"
 
-    id_produto = Column(Integer, primary_key=True)
-    id_unidade = Column(Integer, primary_key=True)
+    id_produto_unidade = Column(Integer, primary_key=True, autoincrement=True)
+    id_produto = Column(Integer)
+    id_unidade = Column(Integer)
     quantidade = Column(Integer)
 
     def __init__(self, id_produto, id_unidade, quantidade):
@@ -44,6 +47,7 @@ class ProdutoUnidade(Base):
         self.quantidade = quantidade
 
 ######
+
 
 def random_tipo_produto() -> TipoProduto:
     tipos_produtos = [
@@ -55,6 +59,7 @@ def random_tipo_produto() -> TipoProduto:
     ]
     return random.choice(tipos_produtos)
 
+
 def gera_produtos(quantidade: int) -> List[Produtos]:
     # gera 100 palavras únicas que serão os nomes dos produtos
     nomes_produtos = falso.words(quantidade, unique=True)
@@ -64,17 +69,20 @@ def gera_produtos(quantidade: int) -> List[Produtos]:
         preco = round(random.uniform(5, 50), 2)
         nome = nomes_produtos.pop()
         tipo = random_tipo_produto()
-        produtos.append( Produtos(i, nome, tipo, preco) )
+        produtos.append(Produtos(i, nome, tipo, preco))
     return produtos
+
 
 def gera_produtos_unidades(produtos: List[Produtos]) -> List[ProdutoUnidade]:
     produtos_unidades = []
-    
-    id_unidades = [id for id in range(1, 11)] # lista com 10 ids de unidade
+
+    id_unidades = [id for id in range(1, 11)]  # lista com 10 ids de unidade
     random.shuffle(id_unidades)
 
-    produtos_exclusivos = produtos[:len(produtos) // 4] # 1/4 dos produtos são exclusivos de uma unidade
-    id_unidade_exclusiva = id_unidades[0] # seleciona a unidade que vai ter os produtos exclusivos
+    # 1/4 dos produtos são exclusivos de uma unidade
+    produtos_exclusivos = produtos[:len(produtos) // 4]
+    # seleciona a unidade que vai ter os produtos exclusivos
+    id_unidade_exclusiva = id_unidades[0]
 
     # associa os produtos exclusivos à unidade escolhida
     for produto_ex in produtos_exclusivos:
@@ -82,13 +90,14 @@ def gera_produtos_unidades(produtos: List[Produtos]) -> List[ProdutoUnidade]:
             ProdutoUnidade(produto_ex.id, id_unidade_exclusiva, random.randint(1, 50)))
 
     # associa o resto dos produtos à todas as unidades
-    produtos = produtos[len(produtos) // 4:] # produtos não-exclusivos
+    produtos = produtos[len(produtos) // 4:]  # produtos não-exclusivos
     for id_unidade in id_unidades:
         for produto in produtos:
             produtos_unidades.append(
                 ProdutoUnidade(produto.id, id_unidade, random.randint(1, 50)))
 
     return produtos_unidades
+
 
 produtos = gera_produtos(100)
 produtos_unidades = gera_produtos_unidades(produtos)
