@@ -87,10 +87,10 @@ CREATE TABLE transacoes
 
 CREATE TABLE produtos_transacoes
   (
+     id_transacao_produto INTEGER PRIMARY KEY AUTO_INCREMENT,
      id_produto INTEGER,
      id_transacao INTEGER,
      valor DECIMAL(6,2) NOT NULL,
-     PRIMARY KEY(id_produto, id_transacao),
      FOREIGN KEY (id_produto) REFERENCES produtos(id_produto),
      FOREIGN KEY (id_transacao) REFERENCES transacoes(id_transacao)
   );
