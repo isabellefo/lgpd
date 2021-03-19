@@ -3,7 +3,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import Column, Integer, String, Boolean, DATE, Numeric, create_engine
 import random
-
+# comentário para não tirar tudo
 falso = Faker(['pt-BR'])
 falso.seed_instance(1234)
 
@@ -16,12 +16,13 @@ Session = sessionmaker(bind=engine)
 session = Session()
 Base = declarative_base()
 
+
 class Cliente(Base):
     __tablename__ = "clientes"
 
     cpf = Column(String(11), primary_key=True)
     cpf_responsavel = Column(String(11))
-    nome = Column(String(100)) 
+    nome = Column(String(100))
     rg = Column(String(9))
     sexo = Column(Boolean)
     telefone = Column(String(10))
@@ -55,6 +56,7 @@ class Cliente(Base):
         self.estado = falso.estado_nome()
         self.cep = falso.postcode()
         self.cidade = falso.city()
+
 
 clientes = []
 dependentes = []
