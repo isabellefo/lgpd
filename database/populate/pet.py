@@ -1,7 +1,7 @@
 from faker import Faker
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy import Column, Integer, String, Boolean, DATE, Enum, Numeric, create_engine
+from sqlalchemy import Column, Integer, String, Boolean, DATE, Enum, Numeric, create_engine, ForeignKey
 
 from petshop.produto.TipoProduto import TipoProduto
 import random
@@ -18,6 +18,7 @@ Session = sessionmaker(bind=engine)
 session = Session()
 Base = declarative_base()
 
+
 def random_especie() -> TipoProduto:
     especies = [
         TipoProduto.AVE,
@@ -27,6 +28,12 @@ def random_especie() -> TipoProduto:
         TipoProduto.ROEDOR
     ]
     return random.choice(especies)
+
+
+def save(objects):
+    session.add_all(pets)
+    session.commit()
+
 
 class Pet(Base):
     __tablename__ = "pets"
@@ -46,15 +53,17 @@ class Pet(Base):
         self.especie = random_especie()
         self.raca = falso.word()
 
+
 class ClientePet(Base):
     __tablename__ = "clientes_pets"
+    id_cliente_pet = Column(Integer, primary_key=True, autoincrement=True)
+    id_pet = Column(Integer, ForeignKey('pets.id_pet'))
+    cpf = Column(String(11), ForeignKey('clientes.cpf'))
 
-    id_pet = Column(Integer, primary_key=True)
-    cpf = Column(String(11), primary_key=True)
-
-    def __init__(self, id_pet, cpf):
-        self.id_pet = id_pet
+    def __init__(self, pet, cpf):
+        self.id_pet = pet.id_pet
         self.cpf = cpf
+
 
 # gera os pets
 pets = []
@@ -63,16 +72,13 @@ for id in range(120):
 
 clientes_pets = []
 for i in range(len(cpfs)):
-    clientes_pets.append( ClientePet(pets[i].id_pet, cpfs[i]) )
+    clientes_pets.append(ClientePet(pets[i], cpfs[i]))
 
 pets_resto = pets[100:]
 for pet in pets_resto:
     cpf = random.choice(cpfs)
-    clientes_pets.append( ClientePet(pet.id_pet, cpf) )
+    clientes_pets.append(ClientePet(pet, cpf))
 
-for pet in pets:
-    session.add(pet)
+save(pets)
 
-for cliente_pet in clientes_pets:
-    session.add(cliente_pet)
-session.commit()
+save(clientes_pets)
