@@ -102,10 +102,9 @@ def gera_produtos_unidades(produtos: List[Produtos]) -> List[ProdutoUnidade]:
 produtos = gera_produtos(100)
 produtos_unidades = gera_produtos_unidades(produtos)
 
-for p in produtos:
-    session.add(p)
+session.add_all(produtos)
+session.commit()
 
-for pu in produtos_unidades:
-    session.add(pu)
+session.add(produtos_unidades)
 
 session.commit()
