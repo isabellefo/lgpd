@@ -32,11 +32,11 @@ CREATE TABLE pets
 
 CREATE TABLE clientes_pets
   (
+     id_cliente_pet INTEGER PRIMARY KEY AUTO_INCREMENT,
      id_pet         INTEGER,
      cpf            VARCHAR(11),
      FOREIGN KEY (id_pet) REFERENCES pets(id_pet),
-     FOREIGN KEY (cpf) REFERENCES clientes(cpf),
-     PRIMARY KEY (id_pet, cpf)
+     FOREIGN KEY (cpf) REFERENCES clientes(cpf)
   );
 
 CREATE TABLE unidades
