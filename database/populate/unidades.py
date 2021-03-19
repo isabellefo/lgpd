@@ -23,11 +23,11 @@ class Unidade(Base):
     celular = Column(String(20))
     email = Column(String(100))
     bairro = Column(String(30))
-    rua = Column(String(100))
+    rua = Column(String(30))
     numero = Column(String(10))
     estado = Column(String(2))
     cep = Column('CEP', String(20))
-    cidade = Column(String(100))
+    cidade = Column(String(20))
 
     def __init__(self, ):
         self.bairro = falso.bairro()
