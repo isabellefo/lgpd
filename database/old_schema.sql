@@ -66,10 +66,10 @@ CREATE TABLE produtos
 
 CREATE TABLE produtos_unidades
   (
+     id_produto_unidade INTEGER PRIMARY KEY AUTO_INCREMENT,
      id_produto         INTEGER,
      id_unidade         INTEGER,
      quantidade         INTEGER,
-     PRIMARY KEY (id_produto, id_unidade),
      FOREIGN KEY (id_produto) REFERENCES produtos(id_produto),
      FOREIGN KEY (id_unidade) REFERENCES unidades(id_unidade)
   );
