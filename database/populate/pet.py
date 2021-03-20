@@ -31,8 +31,13 @@ def random_especie() -> TipoProduto:
 
 
 def save(objects):
-    session.add_all(pets)
+    session.add_all(objects)
     session.commit()
+
+
+class Cliente(Base):
+    __tablename__ = "clientes"
+    cpf = Column(Integer, primary_key=True)
 
 
 class Pet(Base):
