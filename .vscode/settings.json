@@ -2,7 +2,7 @@
     "python.linting.enabled": true,
     "editor.fontLigatures": true,
     "editor.formatOnSave": true,
-    "python.pythonPath": "env/bin/python3.8",
+    "python.pythonPath": "C:\\Users\\abcis\\AppData\\Local\\Programs\\Python\\Python37\\python.exe",
     "python.linting.lintOnSave": true,
     "python.linting.pylintEnabled": true,
     "python.linting.pylintArgs": [
