@@ -11,3 +11,11 @@ Inicialmente a aplicação está despreparada para receber implementar a LGPD, e
  * 1ª Sprint
   - Anonimização de dados 
   - Relatório de clientes 
+ * 2ª Sprint
+  - Migrar o esquema do banco
+  - Retirar cadastros duplicados
+ * 3º Sprint
+  - Anonimização por tempo de retenção de dados
+  - Relatório de transação
+ * 4ª Sprint
+  - Script para restaurar backup e anonimizar automaticamente
