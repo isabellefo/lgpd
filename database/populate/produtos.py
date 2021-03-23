@@ -105,6 +105,6 @@ produtos_unidades = gera_produtos_unidades(produtos)
 session.add_all(produtos)
 session.commit()
 
-session.add(produtos_unidades)
+session.add_all(produtos_unidades)
 
 session.commit()

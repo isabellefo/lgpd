@@ -11,12 +11,12 @@ CREATE TABLE clientes
       data_cadastro    DATE,
       data_modificacao DATE,
       renda            DECIMAL(6, 2),
-      bairro		     VARCHAR(30),
-      rua              VARCHAR(30),
-      numero           VARCHAR(20),
-      estado           VARCHAR(10),
+      bairro		     VARCHAR(100),
+      rua              VARCHAR(100),
+      numero           VARCHAR(100),
+      estado           VARCHAR(50),
       CEP              VARCHAR(20),
-      cidade           VARCHAR(20),
+      cidade           VARCHAR(100),
       FOREIGN KEY (cpf_responsavel) REFERENCES clientes(cpf)
    );
 
@@ -48,12 +48,12 @@ CREATE TABLE unidades
      telefone      VARCHAR(20),
      celular       VARCHAR(20),
      email         VARCHAR(100),
-     bairro		     VARCHAR(30),
-     rua              VARCHAR(30),
+     bairro		     VARCHAR(100),
+     rua              VARCHAR(100),
      numero           VARCHAR(10),
      estado           VARCHAR(2),
      CEP              VARCHAR(20),
-     cidade           VARCHAR(50)
+     cidade           VARCHAR(100)
   );
 
 CREATE TABLE produtos
