@@ -30,4 +30,4 @@ Cada sprint deve trabalhar para entregar valor ao cliente. A fim de que no final
 
 # Problemas
 Para que cada entrega tenha valor realemente é preciso que ela solucione um problema do cliente
-![diagrama de problemas e soluções](https://raw.githubusercontent.com/isabellefo/seg-informacao/main/docs/progessao-de-valor.png)
+![diagrama de problemas e soluções](https://raw.githubusercontent.com/isabellefo/seg-informacao/main/docs/problemas-solucoes.png)
