@@ -7,7 +7,6 @@ O objetivo desse projeto é através de uma aplicação implementar os requisito
 # Situação Inicial
 Inicialmente a aplicação está despreparada para receber implementar a LGPD, estando fora da 3ª forma normal, contendo dados repetidos e nenhuma interface na api para anoimização de clientes.
 
-
 # Backlog
  * 1ª Sprint
   - Anonimização de dados 
@@ -20,3 +19,15 @@ Inicialmente a aplicação está despreparada para receber implementar a LGPD, e
   - Relatório de transação
  * 4ª Sprint
   - Script para restaurar backup e anonimizar automaticamente
+
+# Sprints
+Cada sprint tem seu escopo, as tarefas finais daquele sprint devem estar ter coerência.
+![diagrama das sprints](https://raw.githubusercontent.com/isabellefo/seg-informacao/main/docs/SPRINTS.png)
+
+# Progessão de valor
+Cada sprint deve trabalhar para entregar valor ao cliente. A fim de que no final o objetivo seja cumprido
+![diagram de progressao de valor do produto](https://raw.githubusercontent.com/isabellefo/seg-informacao/main/docs/progessao-de-valor.png)
+
+# Problemas
+Para que cada entrega tenha valor realemente é preciso que ela solucione um problema do cliente
+![diagrama de problemas e soluções](https://raw.githubusercontent.com/isabellefo/seg-informacao/main/docs/progessao-de-valor.png)
