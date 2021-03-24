@@ -1,5 +1,5 @@
 # seg-informacao
-Esse projeto utilizanda Python3.8.6. 
+Esse projeto utiliza Python3.8.6. 
 
 # Objetivo
 O objetivo desse projeto é através de uma aplicação implementar os requisitos de anonimização da LGPD. Aplicação deve ser capaz de anonimizar e manipular dados anonimizados ou não dos clientes em relatórios de vendas entre outros.
@@ -7,6 +7,12 @@ O objetivo desse projeto é através de uma aplicação implementar os requisito
 # Situação Inicial
 Inicialmente a aplicação está despreparada para receber implementar a LGPD, estando fora da 3ª forma normal, contendo dados repetidos e nenhuma interface na api para anoimização de clientes.
 
+# Instalação
+* Crie o ambiente virtual `python3 -m virtualenv env`
+* Instale os drivers para conectar com o banco mysql localmente `sudo apt install libmysqlclient-dev`
+* Ative o ambiente virtual `source env/bin/activate`
+* Instale as dependências `pip install -e .`
+* Crie o database e o usuário `sudo mysql -u USER -p < database/permission.sql`
 # Backlog
  * 1ª Sprint
    - Anonimização de dados 
