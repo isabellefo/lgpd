@@ -15,6 +15,10 @@ def init_db():
     # import all modules here that might define models so that
     # they will be registered properly on the metadata.  Otherwise
     # you will have to import them first before calling init_db()
-    from petshop.cliente.model import Cliente
+    from petshop.cliente.Cliente import Cliente
+    from petshop.transacao.Transacao import Transacao, ProdutoTransacao
+    from petshop.produto.Produto import Produto
+    from petshop.cliente.Pet import Pet
+    from petshop.cliente.ClientePet import ClientePet
 
     Base.metadata.create_all(bind=engine)

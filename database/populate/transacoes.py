@@ -41,7 +41,8 @@ class Transacao(Base):
 class ProdutoTransacao(Base):
     __tablename__ = "produtos_transacoes"
 
-    id_transacao_produto = Column(Integer, primary_key=True, autoincrement=True)
+    id_transacao_produto = Column(
+        Integer, primary_key=True, autoincrement=True)
     id_produto = Column(Integer)
     id_transacao = Column(Integer)
     valor = Column(Numeric(6, 2))
@@ -50,6 +51,7 @@ class ProdutoTransacao(Base):
         self.id_transacao = id_transacao
         self.id_produto = random.randint(1, 100)
         self.valor = round(random.uniform(5, 50), 2)
+
 
 def gera_transacoes(qnt: int) -> List[Transacao]:
     transacoes = []
@@ -67,6 +69,7 @@ def gera_produtos_transacoes(transacoes: List[Transacao]) -> List[ProdutoTransac
         )
         i += 1
     return produtos_transacoes
+
 
 transacoes = gera_transacoes(200)
 p_transacaoes = gera_produtos_transacoes(transacoes)
