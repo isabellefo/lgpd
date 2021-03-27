@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, Response
 
-from cliente import service
+from petshop.cliente import service
 
 
 bp = Blueprint('cliente', __name__)
@@ -13,11 +13,9 @@ def listar_clientes():
     return jsonify(clientes)
 
 
-@bp.route("/<documento>", methods=["GET"])
-def detalhar_cliente(documento):
-    try:
-        cliente = service.detalhar_cliente(documento)
-    except Exception as e:
-        return jsonify({"status": 404, "error": str(e)}), 404
-    else:
+@bp.route("/<int:id>", methods=["GET"])
+def detalhar_cliente(id):
+    cliente = service.detalhar_cliente(id)
+    if cliente != None:
         return jsonify(cliente)
+    return {}, 404
