@@ -6,9 +6,8 @@ class Cliente(Base):
     __tablename__ = "clientes"
 
     id_cliente = Column(Integer, primary_key=True, autoincrement=True)
-    id_cliente_responsavel = Column(Integer, ForeignKey("clientes.id_cliente")) 
+    id_cliente_responsavel = Column(Integer, ForeignKey(id_cliente)) 
     cpf = Column(String(11))
-    id_cliente_responsavel = Column()
     nome = Column(String(100))
     rg = Column(String(9))
     sexo = Column(Boolean)
@@ -26,11 +25,12 @@ class Cliente(Base):
     cidade = Column(String(100))
     transacoes = relationship("Transacao", uselist=True)
     pets = relationship("Pet", secondary="clientes_pets", uselist=True)
+    dependentes = relationship("Cliente", backref=backref('responsavel', remote_side=[id_cliente]))
 
     def __repr__(self):
         return f"{self.cpf} {self.nome} {self.data_nascimento}"
 
-    def to_dict(self, responsavel=True):
+    def to_dict(self, completo=True):
         info = {
             "nome": self.nome,
             "cpf": self.cpf,
@@ -38,9 +38,11 @@ class Cliente(Base):
             "cidade": self.cidade,
             "numero_trasacoes": self.total_transacao,
             "total_gasto": self.total_compras,
-            "pets": [p.to_dict() for p in self.pets],
             "id_responsavel": self.id_cliente_responsavel
         }
+        if completo and self.id_cliente_responsavel:
+            info["pets"] = [p.to_dict() for p in self.pets];
+            info["responsavel"] = self.responsavel.to_dict(completo=False)
         return info
 
     @property
@@ -50,3 +52,4 @@ class Cliente(Base):
     @property
     def total_compras(self):
         return sum([t.valor_total for t in self.transacoes])
+    
