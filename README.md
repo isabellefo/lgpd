@@ -14,17 +14,17 @@ Inicialmente a aplicação está despreparada para receber implementar a LGPD, e
 * Instale as dependências `pip install -e .`
 * Crie o database e o usuário `sudo mysql -u USER -p < database/permission.sql`
 # Backlog
- * 1ª Sprint
-   - Anonimização de dados 
-   - Relatório de clientes 
- * 2ª Sprint
-   - Migrar o esquema do banco
-   - Retirar cadastros duplicados
- * 3º Sprint
-   - Anonimização por tempo de retenção de dados
-   - Relatório de transação
- * 4ª Sprint
-   - Script para restaurar backup e anonimizar automaticamente
+ - [x] 1ª Sprint
+   * [x] Anonimização de dados 
+   * [x] Relatório de clientes 
+ - [ ] 2ª Sprint
+   * Migrar o esquema do banco
+   * Retirar cadastros duplicados
+ - [ ] 3º Sprint
+   * Anonimização por tempo de retenção de dados
+   * Relatório de transação
+ - [ ] 4ª Sprint
+   * Script para restaurar backup e anonimizar automaticamente
 
 # Sprints
 Cada sprint tem seu escopo, as tarefas finais daquele sprint devem estar ter coerência.
