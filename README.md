@@ -32,7 +32,7 @@ Cada sprint tem seu escopo, as tarefas finais daquele sprint devem ter coerênci
 
 # Progessão de valor
 Cada sprint deve trabalhar para entregar valor ao cliente, a fim de que no final o objetivo seja cumprido.
-![diagram de progressao de valor do produto](https://raw.githubusercontent.com/isabellefo/seg-informacao/main/docs/progessao-de-valor.png)
+![diagram de progressao de valor do produto](https://raw.githubusercontent.com/isabellefo/seg-informacao/main/docs/progressao-de-valor.png)
 
 # Problemas
 Para que cada entrega tenha valor realmente, é preciso que ela solucione um ou mais problemas do cliente.
