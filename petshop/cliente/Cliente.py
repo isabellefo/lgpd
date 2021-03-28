@@ -31,19 +31,29 @@ class Cliente(Base):
         return f"{self.cpf} {self.nome} {self.data_nascimento}"
 
     def to_dict(self, completo=True):
-        info = {
+        info = self.__basic_info()
+        if completo:
+            self.__pets_to_dict(info)
+            self.__responsavel_to_dict(info)
+        
+        return info
+    
+    def __basic_info(self):
+        return {
             "nome": self.nome,
             "cpf": self.cpf,
             "telefone": self.telefone,
             "cidade": self.cidade,
             "numero_transacoes": self.total_transacao,
             "total_gasto": self.total_compras,
-            "id_responsavel": self.id_cliente_responsavel
         }
-        if completo and self.id_cliente_responsavel:
-            info["pets"] = [p.to_dict() for p in self.pets];
+
+    def __responsavel_to_dict(self, info):
+        if self.id_cliente_responsavel:
             info["responsavel"] = self.responsavel.to_dict(completo=False)
-        return info
+    
+    def __pets_to_dict(self, info):
+        info["pets"] = [p.to_dict() for p in self.pets]
 
     @property
     def total_transacao(self):
