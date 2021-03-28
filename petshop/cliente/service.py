@@ -17,7 +17,7 @@ def detalhar_cliente(id: int) -> List[Cliente]:
 
 def anonimizar_cliente(id: int) -> None:
     cliente = Cliente.query.filter(Cliente.id_cliente == id)
-    if cliente is None:
+    if cliente.first() is None:
         raise Exception(f"Cliente {id} não encontrado")
 
     cliente.update({

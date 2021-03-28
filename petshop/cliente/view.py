@@ -21,14 +21,14 @@ def detalhar_cliente(id):
     return {}, 404
 
 
-@bp.route("/dadoPessoal/anonimizacao", methods=["PUT"])
+@bp.route("/dado-pessoal/anonimizar", methods=["PUT"])
 def anonimizar_cliente():
     try:
-        documento = request.form.get("id", type=int)
-        if documento is None:
+        id_cliente = request.json.get("id", None)
+        if id_cliente is None:
             raise Exception("Nenhum id válido de cliente foi informado")
 
-        service.anonimizar_cliente(documento)
+        service.anonimizar_cliente(id_cliente)
     except Exception as e:
         return jsonify({"status": 404, "error": str(e)}), 404
     else:
