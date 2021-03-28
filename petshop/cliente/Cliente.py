@@ -36,7 +36,7 @@ class Cliente(Base):
             "cpf": self.cpf,
             "telefone": self.telefone,
             "cidade": self.cidade,
-            "numero_trasacoes": self.total_transacao,
+            "numero_transacoes": self.total_transacao,
             "total_gasto": self.total_compras,
             "id_responsavel": self.id_cliente_responsavel
         }
