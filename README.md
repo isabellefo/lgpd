@@ -1,11 +1,11 @@
 # seg-informacao
-Esse projeto utiliza Python3.8.6. 
+Esse projeto utiliza Python 3.8.6. 
 
 # Objetivo
-O objetivo desse projeto é através de uma aplicação implementar os requisitos de anonimização da LGPD. Aplicação deve ser capaz de anonimizar e manipular dados anonimizados ou não dos clientes em relatórios de vendas entre outros.
+O objetivo desse projeto é através de uma aplicação implementar os requisitos de anonimização da LGPD. Aplicação deve ser capaz de anonimizar e manipular dados anonimizados ou não dos clientes em relatórios da empresa.
 
 # Situação Inicial
-Inicialmente a aplicação está despreparada para receber implementar a LGPD, estando fora da 3ª forma normal, contendo dados repetidos e nenhuma interface na api para anoimização de clientes.
+Inicialmente a aplicação está despreparada para implementar a LGPD, pois o banco de dados não se encontra da 3ª forma normal, contendo dados repetidos e nenhuma interface na api para anoimização de clientes.
 
 # Instalação
 * Crie o ambiente virtual `python3 -m virtualenv env`
@@ -18,7 +18,7 @@ Inicialmente a aplicação está despreparada para receber implementar a LGPD, e
    * [x] Anonimização de dados 
    * [x] Relatório de clientes 
  - [ ] 2ª Sprint
-   * [ ] Migrar o esquema do banco
+   * [ ] Migrar o novo esquema do banco de dados
    * [ ] Retirar cadastros duplicados
  - [ ] 3º Sprint
    * [ ] Anonimização por tempo de retenção de dados
@@ -27,7 +27,7 @@ Inicialmente a aplicação está despreparada para receber implementar a LGPD, e
    *  [ ] Script para restaurar backup e anonimizar automaticamente
 
 # Sprints
-Cada sprint tem seu escopo, as tarefas finais daquele sprint devem estar ter coerência.
+Cada sprint tem seu escopo, as tarefas finais daquele sprint devem ter coerência.
 ![diagrama das sprints](https://raw.githubusercontent.com/isabellefo/seg-informacao/main/docs/SPRINTS.png)
 
 # Progessão de valor
