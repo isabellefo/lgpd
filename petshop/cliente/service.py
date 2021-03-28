@@ -1,5 +1,5 @@
 from petshop.cliente.Cliente import Cliente
-from typing import List
+from typing import List, Dict
 
 
 def listar_clientes() -> List[Cliente]:
@@ -13,3 +13,26 @@ def detalhar_cliente(id: int) -> List[Cliente]:
         return cliente.to_dict()
     else:
         raise Exception("Cliente nao encontrado")
+
+
+def anonimizar_cliente(id: int) -> None:
+    cliente = Cliente.query.filter(Cliente.id_cliente == id)
+    if cliente is None:
+        raise Exception(f"Cliente {id} não encontrado")
+
+    cliente.update({
+        "cpf": "00000000000",
+        "id_cliente_responsavel": None,
+        "nome": None,
+        "rg": None,
+        "telefone": None,
+        "celular": None,
+        "data_nascimento": None,
+        "renda": None,
+        "bairro": None,
+        "rua": None,
+        "numero": None,
+        "estado": None,
+        "cep": None,
+        "cidade": None
+    })

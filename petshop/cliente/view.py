@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, Response
+from flask import Blueprint, jsonify, Response, request
 
 from petshop.cliente import service
 
@@ -19,3 +19,17 @@ def detalhar_cliente(id):
     if cliente != None:
         return jsonify(cliente)
     return {}, 404
+
+
+@bp.route("/dadoPessoal/anonimizacao", methods=["PUT"])
+def anonimizar_cliente():
+    try:
+        documento = request.form.get("id", type=int)
+        if documento is None:
+            raise Exception("Nenhum id válido de cliente foi informado")
+
+        service.anonimizar_cliente(documento)
+    except Exception as e:
+        return jsonify({"status": 404, "error": str(e)}), 404
+    else:
+        return "", 200
