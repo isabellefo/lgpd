@@ -19,8 +19,7 @@ def detalhar_cliente(id):
     if cliente != None:
         return jsonify(cliente)
     return {}, 404
-
-
+ 
 @bp.route("/dado-pessoal/anonimizar", methods=["PUT"])
 def anonimizar_cliente():
     try:
