@@ -1,11 +1,8 @@
 CREATE TABLE dados_pessoais (id_dado_pessoal int NOT NULL AUTO_INCREMENT, PRIMARY KEY (id_dado_pessoal)) 
-AS (SELECT nome, cpf, rg, telefone, celular, data_nascimento, sexo, renda FROM clientes);
+AS (SELECT id_cliente, nome, cpf, rg, telefone, celular, data_nascimento, sexo, renda FROM clientes);
 
-ALTER TABLE clientes
-ADD COLUMN id_dado_pessoal INT;
-
-ALTER TABLE clientes
-ADD FOREIGN KEY (id_dado_pessoal) REFERENCES dados_pessoais(id_dado_pessoal);
+ALTER TABLE dados_pessoais
+ADD FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente);
 
 ALTER TABLE clientes
 DROP COLUMN nome, 
