@@ -1,5 +1,19 @@
-CREATE TABLE dados_pessoais (id_dado_pessoal int NOT NULL AUTO_INCREMENT, PRIMARY KEY (id_dado_pessoal)) 
-AS (SELECT id_cliente, nome, cpf, rg, telefone, celular, data_nascimento, sexo, renda FROM clientes);
+use petmall_db;
+
+DROP TABLE IF EXISTS dados_pessoais;
+CREATE TABLE dados_pessoais(
+    id_dado_pessoal int PRIMARY KEY AUTO_INCREMENT
+) AS (SELECT
+    id_cliente,
+    nome,
+    cpf,
+    rg,
+    telefone,
+    celular,
+    data_nascimento,
+    sexo,
+    renda
+FROM clientes);
 
 ALTER TABLE dados_pessoais
 ADD FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente);
