@@ -1,5 +1,6 @@
 USE petmall_db;
 
+DROP TABLE IF EXISTS enderecos;
 CREATE TABLE enderecos (
   id_cliente  INT NOT NULL,
   estado      VARCHAR(50),
