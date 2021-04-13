@@ -111,7 +111,7 @@ CREATE TABLE `dados_pessoais` (
   `id_dado_pessoal` int NOT NULL AUTO_INCREMENT,
   `id_cliente` int NOT NULL DEFAULT '0',
   `nome` varchar(100) DEFAULT NULL,
-  `cpf` varchar(11) NOT NULL,
+  `cpf` varchar(11) DEFAULT NULL,
   `rg` varchar(9) DEFAULT NULL,
   `telefone` varchar(10) DEFAULT NULL,
   `celular` varchar(11) DEFAULT NULL,

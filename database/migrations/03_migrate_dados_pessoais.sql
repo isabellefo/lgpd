@@ -16,7 +16,8 @@ CREATE TABLE dados_pessoais(
 FROM clientes);
 
 ALTER TABLE dados_pessoais
-ADD FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente);
+    ADD FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente),
+    MODIFY cpf VARCHAR(11); 
 
 ALTER TABLE clientes
 DROP COLUMN nome, 
