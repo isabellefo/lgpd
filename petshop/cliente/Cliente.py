@@ -1,65 +1,63 @@
 from sqlalchemy import Column, Integer, String, Date, Boolean, Numeric, DATE, ForeignKey, ForeignKeyConstraint
 from sqlalchemy.orm import relationship, backref
+
 from petshop.database import Base
+from datetime import datetime
 
 class Cliente(Base):
     __tablename__ = "clientes"
 
     id_cliente = Column(Integer, primary_key=True, autoincrement=True)
     id_cliente_responsavel = Column(Integer, ForeignKey(id_cliente)) 
-    cpf = Column(String(11))
-    nome = Column(String(100))
-    rg = Column(String(9))
-    sexo = Column(Boolean)
-    telefone = Column(String(10))
-    celular = Column(String(11))
-    data_nascimento = Column(DATE)
     data_cadastro = Column(DATE)
     data_modificacao = Column(DATE)
-    renda = Column(Numeric(6, 2))
-    bairro = Column(String(100))
-    rua = Column(String(100))
-    numero = Column(String(20))
-    estado = Column(String(30))
-    cep = Column('CEP', String(20))
-    cidade = Column(String(100))
+
     transacoes = relationship("Transacao", uselist=True)
     pets = relationship("Pet", secondary="clientes_pets", uselist=True)
     dependentes = relationship("Cliente", backref=backref('responsavel', remote_side=[id_cliente]))
+    dado_pessoal = relationship("DadoPessoal", uselist= False)
+    endereco = relationship("Endereco", uselist=False)
 
     def __repr__(self):
-        return f"{self.cpf} {self.nome} {self.data_nascimento}"
+        return f"<{self.id_cliente} {self.dado_pessoal.nome[:10]}>"
 
     def to_dict(self, completo=True):
         info = self.__basic_info()
+        self.__set_transacoes(info)
         if completo:
             self.__pets_to_dict(info)
             self.__responsavel_to_dict(info)
-        
         return info
     
+    def anonimizar(self):
+        # Sdds interfaces 
+        self.id_cliente_responsavel = None
+        self.dado_pessoal.anonimizar()
+        self.endereco.anonimizar()
+        self.data_modificacao = datetime.now()
+
     def __basic_info(self):
-        return {
-            "nome": self.nome,
-            "cpf": self.cpf,
-            "telefone": self.telefone,
-            "cidade": self.cidade,
-            "numero_transacoes": self.total_transacao,
-            "total_gasto": self.total_compras,
-        }
+        info = {}
+        info.update(self.dado_pessoal.to_dict())
+        info.update(self.endereco.to_dict())
+        return info
+    
+    def __set_transacoes(self, info):
+        info.update({ "total_transacao": self.total_transacao})
+        info.update({ "total_gasto": self.total_transacao})
+
+    def __pets_to_dict(self, info):
+        info["pets"] = [p.to_dict() for p in self.pets]
 
     def __responsavel_to_dict(self, info):
         if self.id_cliente_responsavel:
             info["responsavel"] = self.responsavel.to_dict(completo=False)
-    
-    def __pets_to_dict(self, info):
-        info["pets"] = [p.to_dict() for p in self.pets]
 
     @property
     def total_transacao(self):
         return len(self.transacoes)
 
     @property
-    def total_compras(self):
+    def total_gasto(self):
         return sum([t.valor_total for t in self.transacoes])
     

@@ -16,6 +16,8 @@ def init_db():
     # they will be registered properly on the metadata.  Otherwise
     # you will have to import them first before calling init_db()
     from petshop.cliente.Cliente import Cliente
+    from petshop.cliente.DadoPessoal import DadoPessoal
+    from petshop.cliente.Endereco import Endereco
     from petshop.transacao.Transacao import Transacao, ProdutoTransacao
     from petshop.produto.Produto import Produto
     from petshop.cliente.Pet import Pet
