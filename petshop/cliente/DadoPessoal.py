@@ -22,7 +22,7 @@ class DadoPessoal(Base):
         return f"{self.id_cliente} {self.nome}"
     
     def anonimizar(self) -> None:
-        self.cpf = "00000000000"
+        self.cpf = None
         self.nome = None
         self.rg = None
         self.sexo = None

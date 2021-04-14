@@ -44,7 +44,7 @@ class Cliente(Base):
     
     def __set_transacoes(self, info):
         info.update({ "total_transacao": self.total_transacao})
-        info.update({ "total_gasto": self.total_transacao})
+        info.update({ "total_gasto": self.total_gasto})
 
     def __pets_to_dict(self, info):
         info["pets"] = [p.to_dict() for p in self.pets]
