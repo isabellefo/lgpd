@@ -20,13 +20,14 @@ class Endereco(Base):
         return f"<{self.id_cliente} {self.cidade}>"
     
     def anonimizar(self) -> None:
-        self.rua = None
+        self.rua = 'testeeee'
         self.numero = None
-        self.estado = None
         self.cep = None
-        self.cidade = None
 
-    def to_dict(self, completo=True) -> Dict[str, str]:
+    def to_dict(self, completo=True)-> Dict[str, str]:
         return {
-            "cidade": self.cidade
+            "cidade": self.cidade,
+            "rua":self.rua, 
+            "numero":self.numero,
+            "cep":self.cep
         }
