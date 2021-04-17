@@ -8,8 +8,7 @@ from typing import Dict
 
 class Endereco(Base):
     __tablename__ = "enderecos"
-    id_endereco = Column(Integer, primary_key=True, autoincrement=True)
-    id_cliente = Column(Integer, ForeignKey(Cliente.id_cliente),  autoincrement=True)
+    id_cliente = Column(Integer, ForeignKey(Cliente.id_cliente),  primary_key=True, autoincrement=True)
     rua = Column(String(100))
     numero = Column(String(20))
     estado = Column(String(30))
