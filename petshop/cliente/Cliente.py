@@ -1,5 +1,6 @@
 from sqlalchemy import Column, Integer, String, Date, Boolean, Numeric, DATE, ForeignKey, ForeignKeyConstraint
 from sqlalchemy.orm import relationship, backref
+from petshop.cliente.ClienteStatus import ClienteStatus
 
 from petshop.database import Base
 from datetime import datetime
@@ -11,12 +12,14 @@ class Cliente(Base):
     id_cliente_responsavel = Column(Integer, ForeignKey(id_cliente)) 
     data_cadastro = Column(DATE)
     data_modificacao = Column(DATE)
+    id_status = Column(Integer, ForeignKey(ClienteStatus.id_status))
 
     transacoes = relationship("Transacao", uselist=True)
     pets = relationship("Pet", secondary="clientes_pets", uselist=True)
     dependentes = relationship("Cliente", backref=backref('responsavel', remote_side=[id_cliente]))
-    dado_pessoal = relationship("DadoPessoal", uselist= False)
-    endereco = relationship("Endereco", uselist=False)
+    dado_pessoal = relationship("DadoPessoal", uselist= False, cascade="all, save-update")
+    endereco = relationship("Endereco", uselist=False, cascade="all, save-update")
+    status = relationship("ClienteStatus", uselist=False, cascade="all, save-update")
 
     def __repr__(self):
         return f"<{self.id_cliente} {self.dado_pessoal.nome[:10]}>"
@@ -28,18 +31,19 @@ class Cliente(Base):
             self.__pets_to_dict(info)
             self.__responsavel_to_dict(info)
         return info
-    
+
     def anonimizar(self):
-        # Sdds interfaces 
-        self.id_cliente_responsavel = None
-        self.dado_pessoal.anonimizar()
         self.endereco.anonimizar()
+        self.dado_pessoal.anonimizar()  
+        self.id_cliente_responsavel = None
         self.data_modificacao = datetime.now()
+        self.id_status = 3
 
     def __basic_info(self):
         info = {}
-        info.update(self.dado_pessoal.to_dict())
         info.update(self.endereco.to_dict())
+        info.update(self.dado_pessoal.to_dict())
+        info["status"] = self.status.descricao
         return info
     
     def __set_transacoes(self, info):

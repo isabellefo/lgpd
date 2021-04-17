@@ -15,6 +15,7 @@ class Endereco(Base):
     estado = Column(String(30))
     cep = Column('CEP', String(20))
     cidade = Column(String(100))
+    bairro = Column(String(100))
 
     def __repr__(self):
         return f"<{self.id_cliente} {self.cidade}>"
@@ -22,11 +23,14 @@ class Endereco(Base):
     def anonimizar(self) -> None:
         self.rua = None
         self.numero = None
-        self.estado = None
         self.cep = None
-        self.cidade = None
+        self.bairro = None
 
-    def to_dict(self, completo=True) -> Dict[str, str]:
+    def to_dict(self, completo=True)-> Dict[str, str]:
         return {
-            "cidade": self.cidade
+            "cidade": self.cidade,
+            "rua": self.rua, 
+            "numero": self.numero,
+            "cep": self.cep,
+            "bairro": self.bairro
         }
