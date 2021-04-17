@@ -5,7 +5,7 @@ from petshop.cliente.DadoPessoal import DadoPessoal
 from petshop.cliente.Endereco import Endereco
 from petshop.produto.Produto import Produto
 from petshop.transacao.Transacao import Transacao
-
+from petshop.database import db_session
 from sqlalchemy import func, create_engine
 from sqlalchemy.orm import sessionmaker
 
@@ -39,22 +39,17 @@ def remove_duplicates(original, duplicates):
 	# deleta os pets dos clientes duplicados (não tem como deletar em cascata as linhas da tabela `pets` :c)
 	# tentei criar uma trigger em clientes_pets pra remover o pet automaticamente, mas mysql é tão bom que não ativa trigger com
 	# deletação em cascata
-	session = sessionmaker(bind=create_engine('mysql://petmall_app:petmall_pass@localhost/petmall_db', convert_unicode=True))()
-	with session.begin():
-		session.execute(
-			"DELETE p FROM pets p INNER JOIN clientes_pets cp ON cp.id_pet = p.id_pet WHERE cp.id_cliente in (:ids_clientes);",
-			{"ids_clientes": duplicates})
-	session.close()
+	ClientePet.query.filter(ClientePet.id_cliente.in_(duplicates)).update({ClientePet.id_cliente: original}, synchronize_session=False)
 
 	# transfere as transações dos duplicados para o original
 	Transacao.query \
 		.filter(Transacao.id_cliente.in_(duplicates)) \
-		.update({Transacao.id_cliente: original})
+		.update({Transacao.id_cliente: original}, synchronize_session=False)
 
 	# deleção em cascata dos clientes duplicados (deleta dado_pessoal, endereco, cliente_pet etc)
 	Cliente.query \
 		.filter(Cliente.id_cliente.in_(duplicates)) \
-		.delete()
+		.delete(synchronize_session=False)
 
 
 if __name__ == "__main__":
@@ -69,5 +64,5 @@ if __name__ == "__main__":
 		qnt_duplicados += len(duplicate_ids)
 		
 		remove_duplicates(original_id, duplicate_ids)
-	
+	db_session.commit()
 	print(f"Registros duplicados removidos: {qnt_duplicados}")
