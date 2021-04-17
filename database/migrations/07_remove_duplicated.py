@@ -15,21 +15,21 @@ warnings.simplefilter("ignore")
 # Adquire todos os cpfs duplicados na base
 def get_all_duplicates():
 	return Cliente.query \
-					.with_entities(DadoPessoal.cpf, func.count(DadoPessoal.cpf)) \
-					.join(Cliente.dado_pessoal) \
-					.group_by(DadoPessoal.cpf) \
-					.having(func.count(DadoPessoal.cpf) > 1) \
-					.all()
+		.with_entities(DadoPessoal.cpf, func.count(DadoPessoal.cpf)) \
+		.join(Cliente.dado_pessoal) \
+		.group_by(DadoPessoal.cpf) \
+		.having(func.count(DadoPessoal.cpf) > 1) \
+		.all()
 
 # Adquire o id dos clientes com mesmo cpf
 # Os ids retornados já estão ordenados decrescentemente pela coluna data_modificacao
 def get_client_ids_by_cpf(cpf: str):
 	clients = Cliente.query \
-							.with_entities(Cliente.id_cliente) \
-							.join(Cliente.dado_pessoal) \
-							.filter(DadoPessoal.cpf == cpf) \
-							.order_by(Cliente.data_modificacao.desc()) \
-							.all()
+		.with_entities(Cliente.id_cliente) \
+		.join(Cliente.dado_pessoal) \
+		.filter(DadoPessoal.cpf == cpf) \
+		.order_by(Cliente.data_modificacao.desc()) \
+		.all()
 
 	# ((1,), (2,), (3,), (4,)) --> (1, 2, 3, 4)
 	return tuple(c.id_cliente for c in clients)
@@ -66,7 +66,7 @@ if __name__ == "__main__":
 		clients_ids = get_client_ids_by_cpf(cpf)
 
 		original_id, *duplicate_ids = clients_ids
-		qnt_duplicados = len(duplicate_ids)
+		qnt_duplicados += len(duplicate_ids)
 		
 		remove_duplicates(original_id, duplicate_ids)
 	
