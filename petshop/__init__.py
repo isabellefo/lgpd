@@ -14,6 +14,10 @@ def create_app(config_file=None):
 
     @app.teardown_appcontext
     def shutdown_session(exception=None):
+        try:
+            db_session.commit()
+        except:
+            pass
         db_session.remove()
 
     from petshop.view import bp as health, url_prefix

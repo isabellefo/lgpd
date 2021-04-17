@@ -1,6 +1,7 @@
 from petshop.cliente.Endereco import Endereco
 from petshop.cliente.Cliente import Cliente
 from typing import List, Dict
+from petshop.database import db_session
 
 
 def listar_clientes() -> List[Cliente]:
@@ -18,6 +19,5 @@ def anonimizar_cliente(id: int) -> None:
     cliente = Cliente.query.get(id)
     if cliente is None:
         raise Exception(f"Cliente {id} não encontrado")
-    
-    #Warning: gambiarra
     cliente.anonimizar()
+    db_session.add(cliente)

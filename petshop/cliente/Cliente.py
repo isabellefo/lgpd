@@ -34,7 +34,6 @@ class Cliente(Base):
         return info
 
     def anonimizar(self):
-        # Sdds interfaces
         self.endereco.anonimizar()
         self.dado_pessoal.anonimizar()  
         self.id_cliente_responsavel = None
