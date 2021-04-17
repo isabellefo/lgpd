@@ -60,8 +60,8 @@ CREATE TABLE `clientes_pets` (
   PRIMARY KEY (`id_cliente_pet`),
   KEY `id_pet` (`id_pet`),
   KEY `id_cliente` (`id_cliente`),
-  CONSTRAINT `clientes_pets_ibfk_1` FOREIGN KEY (`id_pet`) REFERENCES `pets` (`id_pet`),
-  CONSTRAINT `clientes_pets_ibfk_3` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id_cliente`)
+  CONSTRAINT `clientes_pets_ibfk_1` FOREIGN KEY (`id_pet`) REFERENCES `pets` (`id_pet`) ON DELETE CASCADE,
+  CONSTRAINT `clientes_pets_ibfk_3` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id_cliente`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=121 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -111,7 +111,7 @@ CREATE TABLE `dados_pessoais` (
   `id_dado_pessoal` int NOT NULL AUTO_INCREMENT,
   `id_cliente` int NOT NULL DEFAULT '0',
   `nome` varchar(100) DEFAULT NULL,
-  `cpf` varchar(11) DEFAULT NULL,
+  `cpf` varchar(11) UNIQUE NULL,
   `rg` varchar(9) DEFAULT NULL,
   `telefone` varchar(10) DEFAULT NULL,
   `celular` varchar(11) DEFAULT NULL,
@@ -120,7 +120,7 @@ CREATE TABLE `dados_pessoais` (
   `renda` decimal(6,2) DEFAULT NULL,
   PRIMARY KEY (`id_dado_pessoal`),
   KEY `id_cliente` (`id_cliente`),
-  CONSTRAINT `dados_pessoais_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id_cliente`)
+  CONSTRAINT `dados_pessoais_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id_cliente`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=128 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -150,7 +150,7 @@ CREATE TABLE `enderecos` (
   `numero` varchar(50) DEFAULT NULL,
   `CEP` varchar(20) DEFAULT NULL,
   KEY `id_cliente` (`id_cliente`),
-  CONSTRAINT `enderecos_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id_cliente`)
+  CONSTRAINT `enderecos_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id_cliente`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
