@@ -14,10 +14,17 @@ def generate_num(i: int):
         randomlist.append(n)
     return ''.join([str(x) for x in randomlist]) 
 
-def change_date(date):
+def alter_date(date):
     year = str(date.year)
     new_date = year+'-01-01'
     return dateutil.parser.parse(new_date)
+
+def split_name(name):
+    name_list = name.split(' ')
+    if '.' in name:
+        return ' '.join(name_list[0:2])
+    return name_list[0]
+
 
 class DadoPessoal(Base):
     __tablename__ = "dados_pessoais"
@@ -38,28 +45,19 @@ class DadoPessoal(Base):
     
 
     def anonimizar(self) -> None:
-        cpf = generate_num(6)
-        self.cpf = self.cpf[0:5]+cpf
-        
-        nome = self.nome.split(" ")
-        self.nome = nome[0]
-        
-        rg = generate_num(5)
-        self.rg = self.rg[0:4]+rg
-        
-        tel = generate_num(5)
-        self.telefone = self.telefone[0:5]+tel
+        self.nome = split_name(self.nome)
+        self.cpf = self.cpf[0:5]+generate_num(6)
+        self.rg = self.rg[0:4]+generate_num(5)
+        self.telefone = self.telefone[0:5]+'*****'
         self.celular = self.telefone
-        self.data_nascimento = change_date(self.data_nascimento)
+        self.data_nascimento = alter_date(self.data_nascimento)
         self.renda = None
 
     def to_dict(self, completo=True):
-        print((self.rg))
         return {
             "nome": self.nome,
             "cpf": self.cpf,
             "telefone": self.telefone,
             "celular": self.celular,
-            "nascimento": self.data_nascimento,
-            #"renda": self.renda,
+            "nascimento": self.data_nascimento
         }
