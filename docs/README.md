@@ -6,4 +6,4 @@
 
 # Modelo novo da aplicação
 
-![digrama-novo](https://raw.githubusercontent.com/isabellefo/seg-informacao/main/docs/diagrama-fisico.png))
+![digrama-novo](https://raw.githubusercontent.com/isabellefo/seg-informacao/main/docs/diagrama-novo.png))
