@@ -2,6 +2,7 @@ from petshop.cliente.Endereco import Endereco
 from petshop.cliente.Cliente import Cliente
 from typing import List, Dict
 from petshop.database import db_session
+from flask import abort
 
 
 def listar_clientes() -> List[Cliente]:
@@ -9,15 +10,14 @@ def listar_clientes() -> List[Cliente]:
     return [str(cliente) for cliente in clientes]
 
 def detalhar_cliente(id: int) -> List[Cliente]:
-    cliente = Cliente.query.filter(Cliente.id_cliente == id).first()
-    if cliente:
-        return cliente.to_dict()
-    else:
-        raise Exception("Cliente nao encontrado")
+    cliente = Cliente.query.get(id)
+    if cliente is None:
+        abort(404)
+    return cliente.to_dict()
 
 def anonimizar_cliente(id: int) -> None:
     cliente = Cliente.query.get(id)
     if cliente is None:
-        raise Exception(f"Cliente {id} não encontrado")
+        abort(404)
     cliente.anonimizar()
     db_session.add(cliente)

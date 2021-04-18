@@ -20,6 +20,14 @@ def create_app(config_file=None):
             pass
         db_session.remove()
 
+    @app.errorhandler(404)
+    def not_found(error):
+        return "", 404
+    
+    @app.errorhandler(400)
+    def bad_request(error):
+        return "", 400
+
     from petshop.view import bp as health, url_prefix
     app.register_blueprint(health, url_prefix=url_prefix)
 
