@@ -32,12 +32,14 @@ class Cliente(Base):
             self.__responsavel_to_dict(info)
         return info
 
-    def anonimizar(self):
+    def anonimizar(self, anonimizar_dependentes=True):
         self.endereco.anonimizar()
         self.dado_pessoal.anonimizar()  
         self.id_cliente_responsavel = None
         self.data_modificacao = datetime.now()
         self.id_status = 3
+        if anonimizar_dependentes:
+            self.anonimizar_dependentes()
 
     def __basic_info(self):
         info = {}
@@ -56,6 +58,10 @@ class Cliente(Base):
     def __responsavel_to_dict(self, info):
         if self.id_cliente_responsavel:
             info["responsavel"] = self.responsavel.to_dict(completo=False)
+    
+    def anonimizar_dependentes(self):
+        for dependente in self.dependentes:
+            dependente.anonimizar(anonimizar_dependentes=False)
 
     @property
     def total_transacao(self):
