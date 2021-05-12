@@ -25,3 +25,8 @@ def anonimizar_cliente():
         abort(400)
     service.anonimizar_cliente(id_cliente)
     return "", 201
+
+@bp.route("/dado-pessoal/anonimizar/tempo", methods=["PUT"])
+def anonimizar_tempo():
+    service.anonimizar_tempo()
+    return "", 201
