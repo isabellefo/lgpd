@@ -34,4 +34,7 @@ def create_app(config_file=None):
     from petshop.cliente.view import bp as cliente, url_prefix
     app.register_blueprint(cliente, url_prefix=url_prefix)
 
+    from petshop.transacao.view import bp as transacao, url_prefix
+    app.register_blueprint(transacao, url_prefix=url_prefix)
+
     return app
