@@ -1,7 +1,7 @@
 
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 from petshop.database import db_session
+from petshop.jobs import init_jobs
 
 
 def create_app(config_file=None):
@@ -37,4 +37,5 @@ def create_app(config_file=None):
     from petshop.transacao.view import bp as transacao, url_prefix
     app.register_blueprint(transacao, url_prefix=url_prefix)
 
+    init_jobs()
     return app

@@ -1,3 +1,3 @@
 from petshop import create_app
 app = create_app()
-app.run(debug=True)
+app.run(use_reloader=False)
