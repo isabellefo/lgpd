@@ -24,7 +24,6 @@ def anonimizar_cliente(id: int) -> None:
     db_session.add(cliente)
 
 def anonimizar_tempo() -> None:
-    clientesT = Transacao.query.all()
     clientes = Cliente.query.all()
     
     for cliente in clientes:
