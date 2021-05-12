@@ -22,23 +22,6 @@ class Transacao(Base):
     produtos = relationship("Produto", secondary="produtos_transacoes")
     valores = relationship("ProdutoTransacao", uselist=True)
 
-
-    # def get_last_transacao(self):
-    #     for dt in self.transacoes:
-    #         return dt.data_transacao
-    
-    # def tempo_permanencia(self):
-    #     start_date = self.get_last_transacao()
-    #     print("start", start_date)
-    #     end_date = datetime.today()
-    #     print("end", end_date)
-    #     num_months = (end_date.year - start_date.year) * 12 + (end_date.month - start_date .month)
-    #     if num_months >= 24:
-    #          print('maior igual que 24')
-    #     else:
-    #         print('menor que 24')
-    #     return num_months
-
     @property
     def valor_total(self):
         return sum([ float(p.valor) for p in self.valores])
