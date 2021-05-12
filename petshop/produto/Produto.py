@@ -9,3 +9,6 @@ class Produto(Base):
     id_produto = Column(Integer, primary_key=True, autoincrement=True)
     nome = Column(String(100))
     tipo = Column(Enum(TipoProduto))
+
+    def __repr__(self):
+        return self.nome
