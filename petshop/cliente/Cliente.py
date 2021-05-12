@@ -54,10 +54,6 @@ class Cliente(Base):
         self.data_modificacao = datetime.now()
         self.id_status = 3
 
-    def get_id(self):
-        return self.id_cliente
-        
-
     def __basic_info(self):
         info = {}
         info.update(self.endereco.to_dict())
