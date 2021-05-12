@@ -56,10 +56,6 @@ class Cliente(Base):
         if anonimizar_dependentes:
             self.anonimizar_dependentes()
 
-    def get_id(self):
-        return self.id_cliente
-        
-
     def __basic_info(self):
         info = {}
         info.update(self.endereco.to_dict())
