@@ -32,9 +32,8 @@ class Transacao(Base):
         return produtos
 
     def to_dict(self):
-        info = {
-            "data_transacao": self.data_transacao,
+        return {
+            "data_transacao": self.data_transacao.strftime("%Y-%m-%d"),
             "valor_total": round(self.valor_total, 2),
             "produtos": self.lista_produtos
         }
-        return info
