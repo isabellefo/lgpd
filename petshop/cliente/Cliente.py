@@ -34,17 +34,18 @@ class Cliente(Base):
         return info
         
     def get_last_transacao(self):
-        for dt in self.transacoes:
-            return dt.data_transacao
+        list = [dt.data_transacao for dt in self.transacoes]
+        if list:
+           return max(list)
     
     def tempo_permanencia(self):
         if self.get_last_transacao() is None:
-            return 0
+            start_date = self.data_cadastro
         else:
             start_date = self.get_last_transacao()
-            end_date = datetime.today()
-            num_months = (end_date.year - start_date.year) * 12 + (end_date.month - start_date .month)
-            return num_months
+        end_date = datetime.today()
+        num_months = (end_date.year - start_date.year) * 12 + (end_date.month - start_date .month)
+        return num_months
 
 
     def anonimizar(self, anonimizar_dependentes=True):
