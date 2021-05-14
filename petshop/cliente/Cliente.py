@@ -39,14 +39,16 @@ class Cliente(Base):
            return max(list)
     
     def tempo_permanencia(self):
-        if self.get_last_transacao() is None:
-            start_date = self.data_cadastro
-        else:
-            start_date = self.get_last_transacao()
+        start_date = self.__get_last_activity_date()
         end_date = datetime.today()
         num_months = (end_date.year - start_date.year) * 12 + (end_date.month - start_date .month)
         return num_months
 
+    def __get_last_activity_date(self):
+        last_transacao = self.get_last_transacao()
+        if last_transacao is None:
+            return self.data_cadastro
+        return last_transacao
 
     def anonimizar(self):
         self.endereco.anonimizar()
