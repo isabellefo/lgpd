@@ -28,5 +28,6 @@ def anonimizar_cliente():
 
 @bp.route("/dado-pessoal/anonimizar/tempo", methods=["PUT"])
 def anonimizar_tempo():
-    service.anonimizar_tempo()
+    tempo_inatividade = request.json.get("tempo", 24)
+    service.anonimizar_tempo(tempo_inatividade)
     return "", 201
