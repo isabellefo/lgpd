@@ -25,3 +25,15 @@ class Transacao(Base):
     @property
     def valor_total(self):
         return sum([ float(p.valor) for p in self.valores])
+    
+    @property
+    def lista_produtos(self):
+        produtos = [str(p) for p in self.produtos]
+        return produtos
+
+    def to_dict(self):
+        return {
+            "data_transacao": self.data_transacao.strftime("%Y-%m-%d"),
+            "valor_total": round(self.valor_total, 2),
+            "produtos": self.lista_produtos
+        }
