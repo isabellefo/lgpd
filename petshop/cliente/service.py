@@ -22,10 +22,9 @@ def anonimizar_cliente(id: int) -> None:
     db_session.add(cliente)
 
 def anonimizar_tempo(tempo_inatividade=24) -> None:
-    clientes = Cliente.query.all()
-    
+    clientes = cliente_repository.find_ativos()
     for cliente in clientes:
-        if (cliente.tempo_permanencia()>=tempo_inatividade):
+        if cliente.tempo_permanencia() >= tempo_inatividade:
                 cliente.anonimizar()
                 cliente_repository.save(cliente)
     
