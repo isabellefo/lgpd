@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, String, Date, Boolean, Numeric, DATE, ForeignKey, ForeignKeyConstraint
 from sqlalchemy.orm import relationship, backref
 from petshop.cliente.ClienteStatus import ClienteStatus
+from petshop.transacao.Transacao import Transacao
 
 from petshop.database import Base
 from datetime import datetime
@@ -31,6 +32,23 @@ class Cliente(Base):
             self.__pets_to_dict(info)
             self.__responsavel_to_dict(info)
         return info
+        
+    def get_last_transacao(self):
+        list = [dt.data_transacao for dt in self.transacoes]
+        if list:
+           return max(list)
+    
+    def tempo_permanencia(self):
+        start_date = self.__get_last_activity_date()
+        end_date = datetime.today()
+        num_months = (end_date.year - start_date.year) * 12 + (end_date.month - start_date .month)
+        return num_months
+
+    def __get_last_activity_date(self):
+        last_transacao = self.get_last_transacao()
+        if last_transacao is None:
+            return self.data_cadastro
+        return last_transacao
 
     def anonimizar(self, anonimizar_dependentes=True):
         self.endereco.anonimizar()

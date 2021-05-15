@@ -16,7 +16,7 @@ class Transacao(Base):
     __tablename__ = "transacoes"
     id_transacao = Column(Integer, primary_key=True, autoincrement=True)
     id_cliente = Column(Integer,
-                         ForeignKey("clientes"))
+                         ForeignKey("clientes.id_cliente"))
     data_transacao = Column(Date, default=datetime.datetime.utcnow)
     id_unidade = Column(Integer, nullable=False)
     produtos = relationship("Produto", secondary="produtos_transacoes")

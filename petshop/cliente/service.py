@@ -1,5 +1,6 @@
 from petshop.cliente.Endereco import Endereco
 from petshop.cliente.Cliente import Cliente
+from petshop.transacao.Transacao import Transacao
 from typing import List, Dict
 from petshop.database import db_session
 from flask import abort
@@ -24,5 +25,12 @@ def anonimizar_cliente(id: int) -> None:
     cliente.anonimizar()
     db_session.add(cliente)
 
-def print_date_time():
-    print(os.getpid(), time.strftime("%A, %d. %B %Y %I:%M:%S %p"))
+def anonimizar_tempo(tempo_inatividade=24) -> None:
+    clientes = Cliente.query.all()
+    
+    for cliente in clientes:
+        if (cliente.tempo_permanencia()>=tempo_inatividade):
+                cliente.anonimizar()
+                db_session.add(cliente)
+    
+
