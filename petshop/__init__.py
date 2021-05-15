@@ -3,9 +3,9 @@ from flask import Flask
 from petshop.database import db_session
 from petshop.jobs import init_jobs
 
+app = Flask(__name__)
 
 def create_app(config_file=None):
-    app = Flask(__name__)
     if config_file:
         app.config.from_pyfile(config_file)
 
@@ -14,10 +14,6 @@ def create_app(config_file=None):
 
     @app.teardown_appcontext
     def shutdown_session(exception=None):
-        try:
-            db_session.commit()
-        except:
-            pass
         db_session.remove()
 
     @app.errorhandler(404)
