@@ -21,9 +21,9 @@ Inicialmente a aplicação está despreparada para implementar a LGPD, pois o ba
    * [x] Migrar o novo esquema do banco de dados
    * [x] Retirar cadastros duplicados
    * [x] Aprimorar técnica de anonimização
- - [ ] 3º Sprint
-   * [ ] Anonimização por tempo de retenção de dados
-   * [ ] Relatório de transação
+ - [x] 3º Sprint
+   * [x] Anonimização por tempo de retenção de dados
+   * [x] Relatório de transação
  - [ ] 4ª Sprint
    *  [ ] Script para restaurar backup e anonimizar automaticamente
 
