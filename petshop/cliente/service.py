@@ -1,34 +1,31 @@
-from petshop.cliente.Endereco import Endereco
 from petshop.cliente.Cliente import Cliente
-from petshop.transacao.Transacao import Transacao
-from typing import List, Dict
+from petshop.cliente import repository as cliente_repository 
+from typing import List
 from petshop.database import db_session
 from flask import abort
 
-
 def listar_clientes() -> List[Cliente]:
-    clientes = Cliente.query.all()
+    clientes = cliente_repository.find_all()
     return [str(cliente) for cliente in clientes]
 
 def detalhar_cliente(id: int) -> List[Cliente]:
-    cliente = Cliente.query.get(id)
+    cliente = cliente_repository.find(id)
     if cliente is None:
         abort(404)
     return cliente.to_dict()
 
 def anonimizar_cliente(id: int) -> None:
-    cliente = Cliente.query.get(id)
+    cliente = cliente_repository.find(id)
     if cliente is None:
         abort(404)
     cliente.anonimizar()
     db_session.add(cliente)
 
 def anonimizar_tempo(tempo_inatividade=24) -> None:
-    clientes = Cliente.query.all()
-    
+    clientes = cliente_repository.find_ativos()
     for cliente in clientes:
-        if (cliente.tempo_permanencia()>=tempo_inatividade):
+        if cliente.tempo_permanencia() >= tempo_inatividade:
                 cliente.anonimizar()
-                db_session.add(cliente)
+                cliente_repository.save(cliente)
     
 

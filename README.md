@@ -38,3 +38,7 @@ Cada sprint deve trabalhar para entregar valor ao cliente, a fim de que no final
 # Problemas
 Para que cada entrega tenha valor realmente, é preciso que ela solucione um ou mais problemas do cliente.
 ![diagrama de problemas e soluções](https://raw.githubusercontent.com/isabellefo/seg-informacao/main/docs/problemas-solucoes.png)
+
+# Explicações
+Para simplificar o problema da anonimização por tempo de retenção, foi adicionado um background scheduler. Essa não é a melhor solução , o ideal é usar um serviço externo e manter a aplicação stateless.
+ 
