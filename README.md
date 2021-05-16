@@ -40,5 +40,10 @@ Para que cada entrega tenha valor realmente, é preciso que ela solucione um ou 
 ![diagrama de problemas e soluções](https://raw.githubusercontent.com/isabellefo/seg-informacao/main/docs/problemas-solucoes.png)
 
 # Explicações
+
+## Tecnica de anonimização
+A tecnica usada para anonimização é a de [generalização](https://policies.google.com/technologies/anonymization?hl=pt-BR). Onde é apagado os dados para que o cliente não possa ser identificado em grupo de pessoas, por exemplo: Eduardo Sakaue, professor da FATEC, passa a ser Eduardo, professor.
+
+## Backgroud Job
 Para simplificar o problema da anonimização por tempo de retenção, foi adicionado um background scheduler. Essa não é a melhor solução , o ideal é usar um serviço externo e manter a aplicação stateless.
  
