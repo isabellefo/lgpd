@@ -1,7 +1,7 @@
 # [10] Anonimização de dados por nullificação
 
 ### Story
-Como stakeholder da petmall, preciso que minha aplicação anonimize possobilite a anonimização dos clientes.
+Como stakeholder da petmall, preciso que minha aplicação anonimize clientes.
 
 ### Objetivo  
 Atualmente não é possível anonimizar os clientes, pois a chave primaria é o cpf do cliente, também não temos tempo de fazer anonimização essa correção, por isso simplifique o problema para entregar o que resolve o problema de maneira mais simples.
