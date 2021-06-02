@@ -15,17 +15,21 @@ Inicialmente a aplicação está despreparada para implementar a LGPD, pois o ba
 * Crie o database e o usuário `sudo mysql -u USER -p < database/permission.sql`
 # Backlog
  - [x] 1ª Sprint
-   * [x] Anonimização de dados 
-   * [x] Relatório de clientes 
+   * [x] [10] Anonimização de dados por nullificação
+   * [x] [11] Relatório de dados do cliente 
  - [x] 2ª Sprint
-   * [x] Migrar o novo esquema do banco de dados
-   * [x] Retirar cadastros duplicados
-   * [x] Aprimorar técnica de anonimização
+   * [x] [20] Migrar o novo esquema do banco de dados
+   * [x] [21] Retirar cadastros duplicados
+   * [x] [22] Aprimorar técnica de anonimização (generalização)
  - [x] 3º Sprint
-   * [x] Anonimização por tempo de retenção de dados
-   * [x] Relatório de transação
+   * [x] [30] Anonimização por tempo de retenção de dados
+   * [x] [31] Relatório de transações com total de transações 
  - [ ] 4ª Sprint
-   *  [ ] Script para restaurar backup e anonimizar automaticamente
+   * [ ] [40] Script para restaurar backup
+   * [ ] [41] Script para fazer backup
+   * [ ] [42] Automatização da reanonimização após recuperação dos dados
+   * [ ] [43] End-point para anonimizar em massa
+Para melhor informções, veja os arquivos de 
 
 # Sprints
 Cada sprint tem seu escopo, as tarefas finais daquele sprint devem ter coerência.
