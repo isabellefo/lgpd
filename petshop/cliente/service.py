@@ -2,6 +2,7 @@ from petshop.cliente.Cliente import Cliente
 from petshop.cliente import repository as cliente_repository 
 from typing import List
 from petshop.database import db_session
+from petshop.logs import service as logs
 from flask import abort
 
 def listar_clientes() -> List[Cliente]:
@@ -19,6 +20,7 @@ def anonimizar_cliente(id: int) -> None:
     if cliente is None:
         abort(404)
     cliente.anonimizar()
+    logs.anonimizacao(cliente)
     db_session.add(cliente)
 
 def anonimizar_tempo(tempo_inatividade=24) -> None:

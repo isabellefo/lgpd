@@ -8,10 +8,9 @@ scheduler = BackgroundScheduler()
 def anonimizar():
     from petshop import app
     t = 22
-    print("anonimizando clientes por tempo inativo por %i meses" % t)
-    anonimizar_tempo(t)
+    #anonimizar_tempo(t)
 
 def init_jobs():
-    scheduler.add_job(func=anonimizar, trigger="interval", seconds=10)
+    schedduler.add_job(func=anonimizar, trigger="interval", seconds=5)
     scheduler.start()
     atexit.register(lambda: scheduler.shutdown())
