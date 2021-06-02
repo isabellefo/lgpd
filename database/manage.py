@@ -8,6 +8,7 @@ config = {
     "pwd": "petmall_pass",
 }
 # TODO: criar funcao de restore  = run_file + reanonimize
+# TODO: reanonimize chamar a rota
 # TODO: rota para anonimizacao em massa
 def run_file(file: str) -> str:
     with open(file, 'r') as query:
