@@ -24,9 +24,13 @@ class ClienteAnonimizado(Base):
 
 Base.metadata.create_all(bind=engine)
 
-# TODO: criar funcao de restore  = run_file + reanonimize
-# TODO: reanonimize chamar a rota
-# TODO: rota para anonimizacao em massa
+from datetime import datetime
+
+config = {
+    "db": "petmall_db",
+    "user": "petmall_app",
+    "pwd": "petmall_pass",
+}
 def run_file(file: str) -> str:
     with open(file, 'r') as query:
         process = subprocess.Popen(
