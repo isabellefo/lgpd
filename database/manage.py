@@ -44,11 +44,11 @@ def parse_response(response) -> str:
     
     msg = f"Errors ({len(errors)}):\n"
     for error in errors:
-        msg += f" - id {error['id']}: {error['error']}"
+        msg += f" - id {error['id']}: {error['error']}\n"
 
     msg += f"\n\nSuccesses ({len(successes)}):\n"
     for id in successes:
-        msg += f" - id {id}: anonimized"
+        msg += f" - id {id}: anonimized\n"
     
     return msg
 
