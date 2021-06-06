@@ -38,6 +38,20 @@ def run_file(file: str) -> str:
         output, error = process.communicate()
         return output.decode()
 
+def parse_response(response) -> str:
+    successes = response.json()["successes"]
+    errors = response.json()["errors"]
+    
+    msg = f"Errors ({len(errors)}):\n"
+    for error in errors:
+        msg += f" - id {error['id']}: {error['error']}"
+
+    msg += f"\n\nSuccesses ({len(successes)}):\n"
+    for id in successes:
+        msg += f" - id {id}: anonimized"
+    
+    return msg
+
 def restore(file: str):
     run_file(file)
     date = file[:10]
@@ -51,8 +65,10 @@ def restore(file: str):
         headers={"Content-Type": "application/json"},
         json={"ids": ids},
     )
-    return "OK" if 201 == r.status_code else "ERROR " + r.json()["errors"]
-    
+
+    msg = parse_response(r)
+    return msg
+
 def backup(file: str) -> str:
     with open(file, 'w') as backup:
         process = subprocess.Popen(
