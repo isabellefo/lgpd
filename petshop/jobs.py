@@ -11,6 +11,6 @@ def anonimizar():
     #anonimizar_tempo(t)
 
 def init_jobs():
-    schedduler.add_job(func=anonimizar, trigger="interval", seconds=5)
+    scheduler.add_job(func=anonimizar, trigger="interval", seconds=5)
     scheduler.start()
     atexit.register(lambda: scheduler.shutdown())

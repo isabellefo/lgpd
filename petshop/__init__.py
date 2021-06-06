@@ -22,7 +22,7 @@ def create_app(config_file=None):
     
     @app.errorhandler(400)
     def bad_request(error):
-        return "", 400
+        return "{}", 400
 
     from petshop.view import bp as health, url_prefix
     app.register_blueprint(health, url_prefix=url_prefix)

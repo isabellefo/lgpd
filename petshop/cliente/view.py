@@ -38,9 +38,12 @@ def anonimizar_tempo():
 
 @bp.route("/dado-pessoal/anonimizar/massa", methods=["PUT"])
 def anonimizar_massa():
+    print(request.json)
     ids_clientes = request.json.get("ids", None)
+    print("ids", ids_clientes)
     if (ids_clientes is None) or (not isinstance(ids_clientes, list)):
-        abort(400)
+        print("NO")
+        return jsonify({}), 400
 
     successes, errors = service.anonimizar_massa(ids_clientes)
 

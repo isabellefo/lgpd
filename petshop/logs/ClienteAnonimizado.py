@@ -1,4 +1,3 @@
-from petshop import cliente
 from petshop.logs.log_database import Base
 from sqlalchemy import Column, Integer, DateTime
 from datetime import datetime
