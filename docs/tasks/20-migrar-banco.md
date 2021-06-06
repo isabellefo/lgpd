@@ -4,7 +4,7 @@
 Como chefe de TI da petmall, quero que banco seja refatorado para assegurar a consistência dos dados anonimizados.
 
 ### Objetivo  
-Atualmente os dados cliente estão junto em uma tabela, separe em outras tabelas menores
+Atualmente os dados cadastrais de um cliente estão juntos em uma tabela só, separe em outras tabelas menores.
 
 ### Ações
  * Crie a tabela de dados pessoais
