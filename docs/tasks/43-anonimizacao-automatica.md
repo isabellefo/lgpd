@@ -8,3 +8,6 @@ Script que recebe um parametro "backup" e faz o backup para o arquivo .sql com o
 
 ### Ações
  * Fazer script
+
+![image da teste 1](https://github.com/isabellefo/lgpd/blob/main/docs/1_teste_restore.png?raw=true)
+![image teste 2](https://github.com/isabellefo/lgpd/blob/main/docs/2_teste_restore.png?raw=true)
