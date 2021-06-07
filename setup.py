@@ -11,6 +11,7 @@ setup(
         'Flask-SQLAlchemy',
         'mysqlclient',
         'faker',
-        'APScheduler'
+        'APScheduler',
+        'requests',
     ]
 )
