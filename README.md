@@ -1,6 +1,13 @@
 # ANONIMIZAÇÃO LGPD
 Esse projeto utiliza Python 3.8.6. 
 
+# AUTORES
+ * [Gabriel Francisco](https://www.linkedin.com/in/gabriel-borges-61623b13a/)
+ * [Gabriel Mendes](https://www.linkedin.com/in/skfree/)
+ * [Samuel Costa](https://www.linkedin.com/in/samuelcostacpv/)
+ * [Isabelle Oliveira](https://www.linkedin.com/in/isabelle-f-oliveira/)
+ * [José Henrique](https://www.linkedin.com/in/jos%C3%A9-henrique-b01291207/)
+
 # Objetivo
 O objetivo desse projeto é através de uma aplicação implementar os requisitos de anonimização da LGPD. Aplicação deve ser capaz de anonimizar e manipular dados anonimizados ou não dos clientes em relatórios da empresa.
 
@@ -36,7 +43,7 @@ Para melhor informções, veja os arquivos de
 Cada sprint tem seu escopo, as tarefas finais daquele sprint devem ter coerência.
 ![diagrama das sprints](https://raw.githubusercontent.com/isabellefo/seg-informacao/main/docs/SPRINTS.png)
 
-# Progessão de valor
+# Progressão de valor
 Cada sprint deve trabalhar para entregar valor ao cliente, a fim de que no final o objetivo seja cumprido.
 ![diagram de progressao de valor do produto](https://raw.githubusercontent.com/isabellefo/seg-informacao/main/docs/progressao-de-valor.png)
 
