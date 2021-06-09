@@ -1,4 +1,4 @@
-# seg-informacao
+# ANONIMIZAÇÃO LGPD
 Esse projeto utiliza Python 3.8.6. 
 
 # Objetivo
@@ -13,6 +13,7 @@ Inicialmente a aplicação está despreparada para implementar a LGPD, pois o ba
 * Ative o ambiente virtual `source env/bin/activate`
 * Instale as dependências `pip install -e .`
 * Crie o database e o usuário `sudo mysql -u USER -p < database/permission.sql`
+
 # Backlog
  - [x] 1ª Sprint
    * [x] [10] Anonimização de dados por nullificação
