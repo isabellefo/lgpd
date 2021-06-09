@@ -24,11 +24,11 @@ Inicialmente a aplicação está despreparada para implementar a LGPD, pois o ba
  - [x] 3º Sprint
    * [x] [30] Anonimização por tempo de retenção de dados
    * [x] [31] Relatório de transações com total de transações 
- - [ ] 4ª Sprint
-   * [ ] [40] Script para restaurar backup
-   * [ ] [41] Script para fazer backup
-   * [ ] [42] Automatização da reanonimização após recuperação dos dados
-   * [ ] [43] End-point para anonimizar em massa
+ - [x] 4ª Sprint
+   * [x] [40] Script para restaurar backup
+   * [x] [41] Script para fazer backup
+   * [x] [42] Automatização da reanonimização após recuperação dos dados
+   * [x] [43] End-point para anonimizar em massa
 Para melhor informções, veja os arquivos de 
 
 # Sprints
